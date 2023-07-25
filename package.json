@@ -1,0 +1,26 @@
+{
+  "name": "@llamaindex/whisper",
+  "version": "0.0.1",
+  "description": "Whisper reader for llamaindex",
+  "dependencies": {
+    "llamaindex": "~0.0.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "eslint": "^7.32.0",
+    "jest": "^29.6.1",
+    "ts-jest": "^29.1.1",
+    "tsup": "^7.1.0"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "build": "tsup src/index.ts --format esm,cjs --dts"
+  },
+  "author": "Chris Maddox"
+}
