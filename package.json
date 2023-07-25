@@ -1,10 +1,9 @@
 {
   "name": "llamaindex-whisper",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Whisper reader for llamaindex",
   "dependencies": {
-    "llamaindex": "~0.0.11",
-    "llamaindex-whisper": "link:"
+    "llamaindex": "~0.0.11"
   },
   "devDependencies": {
     "@types/jest": "^29.5.3",
