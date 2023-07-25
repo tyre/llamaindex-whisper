@@ -30,6 +30,38 @@ Simply import the `WhisperReader` and load your data. It's that easy!
   // => Document(text="Greetings parents and congratulations to Kenyon’s graduating class of 2005…")
 ```
 
+Combining that with llamaindex itself:
+
+```typescript
+import { VectorStoreIndex } from "llamaindex";
+import { WhisperReader, WhisperDevice, WhisperOutputFormat } from "llamaindex-whisper";
+
+async function main() {
+  const whisperReader = new WhisperReader({
+    device: WhisperDevice.CPU,
+    outputFormat: WhisperOutputFormat.Text,
+  });
+
+  const documents = await whisperReader.loadData("./giant-leap.mp3")
+
+  // Split text and create embeddings. Store them in a VectorStoreIndex
+  const index = await VectorStoreIndex.fromDocuments(documents);
+
+  // Query the index
+  const queryEngine = index.asQueryEngine();
+  const response = await queryEngine.query(
+    "How big were the step and the leap?"
+  );
+
+  // Output response
+  console.log(response.toString());
+  // => Based on the given context information, the step and the leap are not described in terms of their size or magnitude.
+  // Well, you can't win them all…
+}
+
+main();
+```
+
 ## Options
 
 `WhisperReader` supports a subset of the whisper CLI. Here are the ones supported so far with their defaults:
