@@ -4,13 +4,24 @@
 
 This integrates the [LlamaIndexTS project](https://github.com/run-llama/LlamaIndexTS/) with OpenAI's [whisper](https://github.com/openai/whisper) speech transcription and translation library.
 
-### Install whisper
+### Required libraries
+
 To start, ensure you have whisper locally:
 ```bash
 pip install whisper
 ```
 
-### import modules
+And this package, of course:
+
+```bash
+npm install llamaindex-whisper
+```
+
+## Getting started
+
+Simply import the `WhisperReader` and load your data. It's that easy!
+
+`loadData` returns an array of LlamaIndex Document objects. The array always contains one Document with all of the text. (Support for chunking and splitting is a future concern.)
 
 ```typescript
   import { WhisperReader } from "llamaindex-whisper";
@@ -32,3 +43,49 @@ pip install whisper
   task: WhisperTask = WhisperTask.Transcribe;
   device: WhisperDevice = WhisperDevice.CUDA;
 ```
+
+### Model
+
+`WhisperModel` could be any of the supported whisper models and defaults to `Base`. `English` variants are specifically fine-tuned for english processing. The generic models are multilingual:
+
+```typescript
+TinyEnglish
+Tiny
+BaseEnglish
+Base
+SmallEnglish
+Small
+MediumEnglish
+Medium
+LargeV1
+LargeV2
+Large
+```
+
+### Language
+
+`WhisperLanguage` has mappings for nearly 100 languages, from Afrikaans to Yoruba. Specifically:
+
+> Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Bashkir, Basque, Belarusian, Bengali, Bosnian, Breton, Bulgarian, Catalan, Chinese, Croatian, Czech, Danish, Dutch, English, Estonian, Faroese, Finnish, French, Galician, Georgian, German, Greek, Gujarati, HaitianCreole, Hausa, Hawaiian, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Italian, Japanese, Javanese, Kannada, Kazakh, Khmer, Korean, Lao, Latin, Latvian, Lingala, Lithuanian, Luxembourgish, Macedonian, Malagasy, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Myanmar, Nepali, Norwegian, Nynorsk, Occitan, Pashto, Persian, Polish, Portuguese, Punjabi, Romanian, Russian, Sanskrit, Serbian, Shona, Sindhi, Sinhala, Slovak, Slovenian, Somali, Spanish, Sundanese, Swahili, Swedish, Tagalog, Tajik, Tamil, Tatar, Telugu, Thai, Tibetan, Turkish, Turkmen, Ukrainian, Urdu, Uzbek, Vietnamese, Welsh, Yiddish, Yoruba
+
+
+### OutputFormat
+
+`WhisperOutputFormat` tells whisper the format of the file it writes for transcription. The default is `All`, which writes one file for each of the supported types. I don't know why they decided on that—I can't imagine it's what people want—so you'll want to specify an output.
+
+```typescript
+All
+Text
+VTT
+SRT
+TSV
+JSON
+```
+
+## Task
+
+`WhisperTask` can be set to either `Transcribe` or `Translate`. Transcription is the default.
+
+## Device
+
+`WhisperDevice` can be either `CPU` or `CUDA`. This defaults to `CUDA`, so take note to swap into CPU mode if your graphics card does not support it.
