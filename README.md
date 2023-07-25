@@ -13,7 +13,7 @@ pip install whisper
 ### import modules
 
 ```typescript
-  from "@llamaindex/whisper" import { WhisperReader }
+  import { WhisperReader } from "llamaindex-whisper";
   const reader = new WhisperReader();
   const documents = reader.loadData("this-is-water-speech.mp3");
   // => Document(text="Greetings parents and congratulations to Kenyon’s graduating class of 2005…")

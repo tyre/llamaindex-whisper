@@ -1,6 +1,6 @@
 import { exec, execSync } from "child_process";
 import { Document, BaseReader } from "llamaindex";
-import { WhisperModel, WhisperLanguage, WhisperOutputFormat, WhisperTask, WhisperDevice } from "./types";
+import { WhisperModel, WhisperLanguage, WhisperOutputFormat, WhisperTask, WhisperDevice } from "llamaindex-whisper";
 import { promisify } from "util";
 
 const promisedExec = promisify(exec);
