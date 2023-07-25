@@ -6,9 +6,10 @@ This integrates the [LlamaIndexTS project](https://github.com/run-llama/LlamaInd
 
 ### Required libraries
 
-To start, ensure you have whisper locally:
+To start, ensure you have whisper and ffmpeg locally:
 ```bash
-pip install whisper
+pip install openai-whisper
+brew install ffmpeg
 ```
 
 And this package, of course:
