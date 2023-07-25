@@ -1,5 +1,5 @@
 {
-  "name": "@llamaindex/whisper",
+  "name": "llamaindex-whisper",
   "version": "0.0.1",
   "description": "Whisper reader for llamaindex",
   "dependencies": {

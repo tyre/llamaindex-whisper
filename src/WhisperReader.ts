@@ -1,4 +1,4 @@
-import { exec } from "child_process";
+import { exec, execSync } from "child_process";
 import { Document, BaseReader } from "llamaindex";
 import { WhisperModel, WhisperLanguage, WhisperOutputFormat, WhisperTask, WhisperDevice } from "./types";
 import { promisify } from "util";
@@ -16,6 +16,9 @@ export class WhisperReader implements BaseReader {
   device: WhisperDevice = WhisperDevice.CUDA;
 
   constructor(init: Partial<WhisperReader> = {}) {
+    if (execSync(`which whisper`).includes("not found")) {
+      throw "whisper not found in path. Please `pip install whisper` and add it to your path."
+    }
     Object.assign(this, init);
   }
 
