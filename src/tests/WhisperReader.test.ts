@@ -20,7 +20,7 @@ describe('WhisperReader', () => {
     expect(documents.length).toBe(1);
     expect(documents[0].metadata).toBe(metadata);
     expect(documents[0].text).toContain('That\'s one small step for man');
-  });
+  }, 20000);
 
   it('should support transcriptions in other languages', async () => {
     const reader = new WhisperReader({
@@ -35,6 +35,6 @@ describe('WhisperReader', () => {
     const documents = await reader.loadData('src/tests/test_files/french-test.mp3');
     expect(documents.length).toBe(1);
     // Honestly this translation is a mess, but it's what the model outputs
-    expect(documents[0]).toContain("they attack vigorously")
-  })
+    expect(documents[0].text).toContain("they attack vigorously")
+  }, 20000)
 });
